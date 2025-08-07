@@ -1,5 +1,6 @@
 
 from nltk.corpus import wordnet as wn
+import re
 
 # To decide which synset should be used for the word "center"
 for synset in wn.synsets('center'):
@@ -36,9 +37,15 @@ left = wn.synset("left_field.n.01").lemma_names()
 # used: "left_field.n.01" : def: the piece of ground in the outfield on the catcher's left
 ###################################################################
 
+# removing the underscroe from the word (e.g. 'left_field' → 'left field')
+center_clean = [re.sub(r'_', ' ', word) for word in center]
+right_clean = [re.sub(r'_', ' ', word) for word in right]
+left_clean = [re.sub(r'_', ' ', word) for word in left]
 
+# Storing it in a dictionary, which i call in model.py
 INSTRUCTIONS = {
-    "right": right,
-    "left": left,
-    "center": center,
-}
+    "right": right_clean,
+    "left": left_clean,
+    "center": center_clean}
+
+
