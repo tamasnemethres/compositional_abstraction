@@ -1,0 +1,101 @@
+round,target_x,built_x,instruction,success
+1,2,1,place block right field,False
+2,0,0,place block left field,True
+3,2,2,place block right field,True
+4,2,1,place block right field,False
+5,0,0,place block left field,True
+6,0,0,place block left field,True
+7,0,0,place block left field,True
+8,2,2,place block right field,True
+9,2,2,place block right field,True
+10,1,1,place block eye,True
+11,0,0,place block left field,True
+12,0,0,place block left field,True
+13,1,1,place block eye,True
+14,0,0,place block left field,True
+15,1,1,place block eye,True
+16,0,0,place block left field,True
+17,1,1,place block eye,True
+18,0,0,place block left field,True
+19,2,1,place block right field,False
+20,0,0,place block left field,True
+21,2,2,place block right field,True
+22,1,1,place block eye,True
+23,2,2,place block right field,True
+24,0,0,place block left field,True
+25,0,0,place block left field,True
+26,0,0,place block left field,True
+27,1,1,place block eye,True
+28,1,1,place block eye,True
+29,0,0,place block left field,True
+30,2,2,place block right field,True
+31,2,2,place block right field,True
+32,0,0,place block left field,True
+33,0,1,place block left field,False
+34,1,1,place block eye,True
+35,2,2,place block right field,True
+36,0,0,place block left field,True
+37,0,0,place block left field,True
+38,0,0,place block left field,True
+39,1,1,place block eye,True
+40,0,0,place block left field,True
+41,2,2,place block right field,True
+42,1,1,place block eye,True
+43,1,1,place block eye,True
+44,2,2,place block right field,True
+45,1,2,place block eye,False
+46,2,2,place block right field,True
+47,2,2,place block right field,True
+48,2,2,place block right field,True
+49,0,0,place block left field,True
+50,0,0,place block left field,True
+51,0,0,place block left field,True
+52,0,0,place block left field,True
+53,2,2,place block right field,True
+54,0,0,place block left field,True
+55,2,2,place block right field,True
+56,2,2,place block right field,True
+57,2,2,place block right field,True
+58,0,0,place block left field,True
+59,0,0,place block left field,True
+60,2,2,place block right field,True
+61,2,2,place block right field,True
+62,1,1,place block eye,True
+63,1,2,place block eye,False
+64,2,2,place block right field,True
+65,2,2,place block right field,True
+66,2,2,place block right field,True
+67,2,2,place block right field,True
+68,2,2,place block right field,True
+69,0,0,place block left field,True
+70,2,2,place block right field,True
+71,2,2,place block right field,True
+72,2,2,place block right field,True
+73,0,1,place block left field,False
+74,1,1,place block eye,True
+75,0,0,place block left field,True
+76,0,1,place block left field,False
+77,0,0,place block left field,True
+78,2,2,place block right field,True
+79,0,0,place block left field,True
+80,2,2,place block right field,True
+81,2,2,place block right field,True
+82,0,0,place block left field,True
+83,2,2,place block right field,True
+84,2,2,place block right field,True
+85,2,2,place block right field,True
+86,1,1,place block eye,True
+87,1,0,place block eye,False
+88,0,0,place block left field,True
+89,2,2,place block right field,True
+90,2,2,place block right field,True
+91,0,0,place block left field,True
+92,0,0,place block left field,True
+93,0,0,place block left field,True
+94,0,0,place block left field,True
+95,1,1,place block eye,True
+96,0,0,place block left field,True
+97,2,2,place block right field,True
+98,2,2,place block right field,True
+99,0,0,place block left field,True
+100,1,0,place block eye,False
