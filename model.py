@@ -2,7 +2,7 @@ from  instructions import INSTRUCTIONS
 import pandas as pd
 import random
 
-random.seed(42)  # Set seed for reproducibility
+
 
 
 # Additional helper functions for the communication experiment
@@ -84,17 +84,14 @@ class Agent:
                     beta = self.vocabulary[synonym]['beta']
                     posterior = alpha / (alpha + beta)
                     print(f"  {self.agent_id} learned '{synonym}': α={alpha}, β={beta}, P(success)={posterior:.3f}")
-                    return
+                    return 
+        
 
 
 
-def run_single_block_experiment(num_rounds: int = 
-                                25
-                                #100
-                                #1000
-                                ):
+def run_single_block_experiment(seed = 42, num_rounds: int = 25):
     """Run communication experiment with single block placement"""
-    
+    random.seed(seed)
     architect_agent = Agent("architect")
     builder_agent = Agent("builder")
     
@@ -137,8 +134,15 @@ def run_single_block_experiment(num_rounds: int =
             builder_success = True   # Builder interpreted correctly
             
         builder_agent.learn_from_feedback(instruction, builder_success)
-        
-        results.append(success)
+
+        # I cannot append them separetely, since their type is different
+        results.append({
+            'round': round_num + 1,
+            'target_x': target_x,
+            'built_x': built_x,
+            'instruction': instruction,
+            'success': success,
+        })
         
         print(f"Round {round_num + 1}:")
         print(f"  Target position: ({target_x}, {target_y})")
@@ -148,15 +152,17 @@ def run_single_block_experiment(num_rounds: int =
         print("=" * 51)
     
     print("=" * 51)
-    success_rate = sum(results) / len(results)
+    success_rate = sum(r['success'] for r in results) / len(results)
     print(f"Overall success rate: {success_rate:.2%}")
     
     return results
 
-run_single_block_experiment()
 
-# data = pd.DataFrame(run_single_block_experiment()) #25
-# data_2 = pd.DataFrame(run_single_block_experiment()) #100
-# data_3 = pd.DataFrame(run_single_block_experiment()) #1000
-# data.to_csv('experiment_results.csv', index=False)
+
+data_25 = pd.DataFrame(run_single_block_experiment()) #25
+data_100 = pd.DataFrame(run_single_block_experiment(num_rounds = 100)) #100
+data_1000 = pd.DataFrame(run_single_block_experiment(num_rounds = 1000)) #1000
+data_25.to_csv('results_25.csv', index=False)
+data_100.to_csv('results_100.csv', index=False)
+data_1000.to_csv('results_1000.csv', index=False)
 
