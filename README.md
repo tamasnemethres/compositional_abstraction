@@ -6,7 +6,7 @@ The current repository"s strctire is the follwoing:
 
 [model](model/) contains the model, and it's related files (Python). Contains a README file with further explanations.
 
-[analysis](/analyis) contains the frequentists and bayesian analysises (R) and the [requirements](analysis/requirements.R) for the R script. Contains a README file with further explanations.
+[analysis](/analysis) contains the frequentists and bayesian analysises (R) and the [requirements](analysis/requirements.R) for the R script. Contains a README file with further explanations.
 
 [plot](plot/) contains a plot's picture about the results. The code for it is located in the [analysis](analysis) folder, due to the renv package.
 
