@@ -16,35 +16,23 @@ class Agent:
         
     def generate_instruction(self, target_category=None):
         """Generate instruction for single block placement"""
-        if target_category and target_category in INSTRUCTIONS:
-            synonyms = INSTRUCTIONS[target_category]
+        # Assumes a valid key is always passed
+        synonyms = INSTRUCTIONS[target_category]
 
-            if self.vocabulary:
-                best_word= None
-                best_prob= 0
-
-                for synonym in synonyms:
-                    if synonym in self.vocabulary:
-                        alpha = self.vocabulary[synonym]['alpha']
-                        beta = self.vocabulary[synonym]['beta']
-                        prob = alpha / (alpha + beta)
-                        if prob > best_prob:
-                            best_prob = prob
-                            best_word = synonym
-
-                if best_word:
-                    chosen_word = best_word
-                else:
-                    chosen_word = random.choice(synonyms)
-            else:
-                chosen_word = random.choice(synonyms)
-                        
+        if self.vocabulary:
+            best_word = None
+            best_prob = 0.0
+            for synonym in synonyms:
+                if synonym in self.vocabulary:
+                    alpha = self.vocabulary[synonym]['alpha']
+                    beta = self.vocabulary[synonym]['beta']
+                    prob = alpha / (alpha + beta)
+                    if prob > best_prob:
+                        best_prob = prob
+                        best_word = synonym
+            chosen_word = best_word if best_word else random.choice(synonyms)
         else:
-        # Handle case when no target_category or category not found
-            all_synonyms = []
-            for synonyms in INSTRUCTIONS.values():
-                all_synonyms.extend(synonyms)
-            chosen_word = random.choice(all_synonyms)  # Random from all words
+            chosen_word = random.choice(synonyms)
 
         return f"place block {chosen_word}"
     
@@ -68,7 +56,7 @@ class Agent:
         # Extract any synonym from instruction
         for _, synonyms in INSTRUCTIONS.items():
             for synonym in synonyms:
-                if synonym in instruction.lower():
+                if synonym in instruction:
                     if synonym not in self.vocabulary:
                         self.vocabulary[synonym] = {
                             'alpha': self.prior_alpha,  # Use existing prior!
@@ -96,6 +84,7 @@ def run_single_block_experiment(seed = 42, num_rounds: int = 25):
     builder_agent = Agent("builder")
     
     results = []
+    results_for_sanity_check = []
     
     print("Starting single block communication experiment...")
     print("=" * 51)
@@ -129,7 +118,7 @@ def run_single_block_experiment(seed = 42, num_rounds: int = 25):
 
         # Builder learns based on whether they made an error
         if builder_made_error:
-            builder_success = False  # Builder knows they guessed wrong
+            builder_success = False  #  Builder knows they guessed wrong
         else:
             builder_success = True   # Builder interpreted correctly
             
@@ -137,11 +126,11 @@ def run_single_block_experiment(seed = 42, num_rounds: int = 25):
 
         # I cannot append them separetely, since their type is different
         results.append({
-            'round': round_num + 1,
-            'target_x': target_x,
-            'built_x': built_x,
-            'instruction': instruction,
-            'success': success,
+            "round": round_num + 1,
+            "target_x": target_x,
+            "built_x": built_x,
+            "instruction": instruction,
+            "success": success,
         })
         
         print(f"Round {round_num + 1}:")
@@ -153,6 +142,10 @@ def run_single_block_experiment(seed = 42, num_rounds: int = 25):
     
     print("=" * 51)
     success_rate = sum(r['success'] for r in results) / len(results)
+    #for sanity check
+    for rec in results:
+        rec['success_rate'] = success_rate
+    results_for_sanity_check.append({'success_rate': success_rate})
     print(f"Overall success rate: {success_rate:.2%}")
     
     return results
@@ -162,7 +155,7 @@ def run_single_block_experiment(seed = 42, num_rounds: int = 25):
 data_25 = pd.DataFrame(run_single_block_experiment()) #25
 data_100 = pd.DataFrame(run_single_block_experiment(num_rounds = 100)) #100
 data_1000 = pd.DataFrame(run_single_block_experiment(num_rounds = 1000)) #1000
-data_25.to_csv('results_25.csv', index=False)
-data_100.to_csv('results_100.csv', index=False)
-data_1000.to_csv('results_1000.csv', index=False)
+data_25.to_csv('data/results_25.csv', index=False)
+data_100.to_csv('data/results_100.csv', index=False)
+data_1000.to_csv('data/results_1000.csv', index=False)
 
