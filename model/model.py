@@ -77,20 +77,19 @@ class Agent:
 
 
 
-def run_single_block_experiment(seed = 42, num_rounds: int = 25):
+def run_single_block_experiment(seed = 42, trials: int = 25):
     """Run communication experiment with single block placement"""
     random.seed(seed)
     architect_agent = Agent("architect")
     builder_agent = Agent("builder")
     
     results = []
-    results_for_sanity_check = []
     
     print("Starting single block communication experiment...")
     print("=" * 51)
     print("=" * 51)
     
-    for round_num in range(num_rounds):
+    for round_num in range(trials):
         # Architect decides on target position
         target_x, target_y = random.randint(0, 2), 0 #  random target position for x (0, 1, 2);  and a determined 0 for  y. 
 
@@ -126,14 +125,14 @@ def run_single_block_experiment(seed = 42, num_rounds: int = 25):
 
         # I cannot append them separetely, since their type is different
         results.append({
-            "round": round_num + 1,
+            "trial": round_num + 1,
             "target_x": target_x,
             "built_x": built_x,
             "instruction": instruction,
             "success": success,
         })
         
-        print(f"Round {round_num + 1}:")
+        print(f"Round {trials + 1}:")
         print(f"  Target position: ({target_x}, {target_y})")
         print(f"  Instruction: '{instruction}'")
         print(f"  Built position: ({built_x}, {built_y})")
@@ -145,7 +144,6 @@ def run_single_block_experiment(seed = 42, num_rounds: int = 25):
     #for sanity check
     for rec in results:
         rec['success_rate'] = success_rate
-    results_for_sanity_check.append({'success_rate': success_rate})
     print(f"Overall success rate: {success_rate:.2%}")
     
     return results
@@ -153,8 +151,8 @@ def run_single_block_experiment(seed = 42, num_rounds: int = 25):
 
 
 data_25 = pd.DataFrame(run_single_block_experiment()) #25
-data_100 = pd.DataFrame(run_single_block_experiment(num_rounds = 100)) #100
-data_1000 = pd.DataFrame(run_single_block_experiment(num_rounds = 1000)) #1000
+data_100 = pd.DataFrame(run_single_block_experiment(trials = 100)) #100
+data_1000 = pd.DataFrame(run_single_block_experiment(trials = 1000)) #1000
 data_25.to_csv('data/results_25.csv', index=False)
 data_100.to_csv('data/results_100.csv', index=False)
 data_1000.to_csv('data/results_1000.csv', index=False)
