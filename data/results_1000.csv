@@ -1,4 +1,4 @@
-round,target_x,built_x,instruction,success,success_rate,instruction_lenght_by_letter,instruction_lenght_by_word
+trial,target_x,built_x,instruction,success,success_rate,instruction_length_by_letter,instruction_length_by_word
 1,2,1,place block right field,False,0.875,23,4
 2,0,0,place block left field,True,0.875,22,4
 3,2,2,place block right field,True,0.875,23,4
