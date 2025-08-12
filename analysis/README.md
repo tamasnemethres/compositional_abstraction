@@ -4,7 +4,7 @@ In the analysis I was curious whether the Architect's instructions got shorter o
 
 ## Frequentists analysis
 
-I used linear regression for determine my hypothesis. The Likelihood Ratio Test got only significant at the 1000 trial analyses, this might be only 1000 trial has enough data. The results of the analyses I commented out after the code for readability in the [frequentist.R](analysis/frequentist.R) script. Notably, if we measure instruction length by letters, we obtain more informative results than when measuring by words, because:
+I used linear regression for determine my hypothesis. The Likelihood Ratio Test got only significant at the 1000 trial analyses, this might be only 1000 trial has enough data. The results of the analyses I commented out after the code for readability in the [frequentist.R](frequentist.R) script. Notably, if we measure instruction length by letters, we obtain more informative results than when measuring by words, because:
 
 1.  Words vary in length — for example, *eye* (3 letters) and *center* (6 letters) both count as 1 word but differ in letter count.
 
