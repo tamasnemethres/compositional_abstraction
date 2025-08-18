@@ -128,12 +128,5 @@ summary(model_1000_l)
 # Multiple R-squared:  0.004397,	Adjusted R-squared:  0.003399 
 # F-statistic: 4.407 on 1 and 998 DF,  p-value: 0.03604
 
-################################################################################
-#Since there are two significant models I used AIC for comparison
-################################################################################
-AIC(model_1000_w)
-#1342.046
 
-AIC(model_1000_l)
-#5390.283
 
