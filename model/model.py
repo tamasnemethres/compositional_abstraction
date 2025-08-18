@@ -89,7 +89,8 @@ def run_single_block_experiment(seed = 42, trials: int = 25):
     print("=" * 51)
     print("=" * 51)
     
-    for round_num in range(trials):
+    
+    for trials in range(trials):
         # Architect decides on target position
         target_x, target_y = random.randint(0, 2), 0 #  random target position for x (0, 1, 2);  and a determined 0 for  y. 
 
@@ -125,7 +126,7 @@ def run_single_block_experiment(seed = 42, trials: int = 25):
 
         # I cannot append them separetely, since their type is different
         results.append({
-            "trial": round_num + 1,
+            "trial": trials + 1,
             "target_x": target_x,
             "built_x": built_x,
             "instruction": instruction,
