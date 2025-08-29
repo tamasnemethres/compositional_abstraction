@@ -2,7 +2,7 @@
 
 This work is based on and inspired by [McCarthy et al. (2023) 's](https://github.com/cogtoolslab/compositional-abstractions-tutorial?tab=readme-ov-file) code. This code simplyfies their experiment. I was curious, whether the Agent prefers shorter instructions over time (see more in the [model's README file](model/README.md)).
 
-The current repository"s strctire is the follwoing:
+The current repository's strctire is the follwoing:
 
 [model](model/) contains the model, and it's related files (Python). Contains a README file with further explanations.
 
